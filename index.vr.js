@@ -5,6 +5,7 @@ import {
   Pano,
   Text,
   View,
+  VrButton
 } from 'react-vr';
 
 import Page from './page';
@@ -14,12 +15,12 @@ export default class vrplate extends React.Component {
   constructor() {
     super();
     this.state = {
-        location: '/'
+        scene: '/other'
     };
   }
-  render() {
-    let {location} = this.state;
-    switch (location) {
+  getScene(){
+    let {scene} = this.state;
+    switch (scene) {
       case '/':
         return (
           <Page />
@@ -33,6 +34,35 @@ export default class vrplate extends React.Component {
           <Page />
         );
     }
+  }
+  setScene(scene){
+    //this.setState({location: '/'})
+    //console.log(location);
+  }
+  render() {
+    return(
+      <View>
+        <View style={{
+          flex: 1,
+          flexDirection: 'column',
+          width: 2,
+          alignItems: 'stretch',
+          transform: [{translate: [-1, 1, -5]}],
+        }}>
+          <VrButton
+            style={{margin: 0.1, height: 0.3, backgroundColor: 'red'}}
+            onClick={()=>this.setState({scene: '/'})}>
+            <Text style={{fontSize: 0.2, textAlign: 'center'}}>Other Page</Text>
+          </VrButton>
+          <VrButton
+            style={{margin: 0.1, height: 0.3, backgroundColor: 'red'}}
+            onClick={()=>this.setState({scene: '/other'})}>
+            <Text style={{fontSize: 0.2, textAlign: 'center'}}>Main Page</Text>
+          </VrButton>
+        </View>
+        {this.getScene()}
+      </View>
+    );
   }
 };
 

@@ -24,7 +24,7 @@ class Page extends React.Component {
             textAlignVertical: 'center',
             transform: [{translate: [0, 0, -3]}],
           }}>
-          page
+          main page
         </Text>
       </View>
     );
